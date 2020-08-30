@@ -31,7 +31,7 @@
   >
   > - stack over flow
 
-  - When catching multiple exceptions, We should catch more specific exception first, and genreal exceptions later.
+- When catching multiple exceptions, We should catch more specific exception first, and genreal exceptions later.
 
 ```cpp
 try
