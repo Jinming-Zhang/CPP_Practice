@@ -5,6 +5,7 @@
 !*/
 # unignore all files that have extension
 !*.*
+**/settings.json
 # Prerequisites
 *.d
 
