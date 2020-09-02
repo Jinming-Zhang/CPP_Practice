@@ -98,3 +98,80 @@ string input;
 cin >> input;
 cout << "the input is: " << input <<endl;
 ```
+
+## Pointer vs Reference
+
+[geeksforgeeks](https://www.geeksforgeeks.org/references-in-c/)
+
+### Reference
+
+> When a variable is declared as reference, it becomes an alternative name for an existing variable. A variable can be declared as reference by putting ‘&’ in the declaration.
+
+### Pointer
+
+Stores a memory address. Can be anywhere, or Null.
+
+### Differences
+
+> - Once a reference is created, it cannot be later made to reference another object; it cannot be reseated.
+>
+> - References cannot be NULL. Pointers are often made NULL to indicate that they are not pointing to any valid thing.
+>
+> - A reference must be initialized when declared. There is no such restriction with pointers
+>
+> - References don’t need dereferencing operator to access the value. They can be used like normal variables. ‘&’ operator is needed only at the time of declaration.
+
+## Constructor List
+
+An easier syntax to write constructors for objects
+
+```cs
+class Wolf{
+public:
+  string name age;
+  Wolf():name(name), age(age){
+
+  }
+};
+```
+
+This is equivalent to:
+
+````cs
+class Wolf{
+public:
+  string name age;
+  Wolf(string name, string age){
+    this->name = name;
+    this->age = age;
+  }
+};
+## Copy Constructor
+
+Objects in C++ has an implicit Copy Constructor which invokes when initializing an object's value with another object. The copy constructor make a copy of the other object so the newly created object is independent from the another object.
+
+```cs
+Wolf wolf1(someProperties);
+// this will let the '=', equal operator, invoke the copy constructor that returns a copy of wolf1 object
+Wolf wolf2 = wolf1;
+// or use this to call the copy constructor directly
+Wolf wolf2 = Wolf(wolf1);
+// this will only effect wolf2.
+wolf2.someProperties = somethingElse;
+````
+
+To explicitly define the copy constructor in the object:
+
+```cs
+class Wolf{
+public:
+  // this is default constructor
+  Wolf();
+  // here is the explicit copy constructor
+  // it takes a constant reference of the Wolf object to copy
+  Wolf(const Wolf &anotherWolf){
+    // if we explicitly defined this copy construcor, the default copy constructor will be override and then we have to manually copy the object, or it will not function as it 'suppose' to be
+    this.something = anotherWolf.something;
+  }
+};
+```

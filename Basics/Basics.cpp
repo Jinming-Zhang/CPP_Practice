@@ -1,9 +1,13 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <chrono>
+#include <thread>
+// #include "Wolf.h"
+#include "Wolf.cpp"
 using namespace std;
 
-int main(char **args)
+int main()
 {
     // flush the output to console with a newline char
     cout << "Flush something with new line..." << endl;
@@ -26,5 +30,35 @@ int main(char **args)
     cout << "double\t\t\t: " << numeric_limits<double>::min() << " to " << numeric_limits<double>::max() << endl;
     cout << "long double\t\t: " << numeric_limits<long double>::min() << " to " << numeric_limits<long double>::max() << endl;
     cout << numeric_limits<unsigned int>::max() << endl;
+    // array
+    string animals[3][3] = {{"dog", "wolf", "bear"},
+                            {"crocodile", "canine", "lizard"}};
+    cout << sizeof(animals) << endl;
+    cout << sizeof(animals[0]) << endl;
+    cout << sizeof((animals[0][0])) << endl;
+    for (unsigned int i = 0; i < sizeof(animals) / sizeof(animals[0]); i++)
+    {
+        for (unsigned int j = 0; j < sizeof(animals[0]) / sizeof(animals[0][0]); j++)
+        {
+            cout << animals[i][j] << " " << flush;
+        }
+        cout << endl;
+    }
+
+    Wolf wolf1;
+    cout << "confirming address...." << endl;
+    cout << &wolf1 << endl;
+    cout << wolf1.toString() << endl;
+
+    cout << "quiting in 3 seconds" << endl;
+    cout << 3 << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    cout << 2 << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    cout << 1 << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
+    // string anything;
+    // cout << "type enter to quit." << endl;
+    // cin >> anything;
     return 0;
 }
