@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 // #include "Wolf.h"
+#include "Animal.h"
 #include "Wolf.cpp"
 int main()
 {

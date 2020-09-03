@@ -3,8 +3,8 @@
 #include <limits>
 #include <chrono>
 #include <thread>
-// #include "Wolf.h"
-#include "Wolf.cpp"
+#include "Wolf.h"
+// #include "Wolf.cpp"
 using namespace std;
 
 int main()
