@@ -1,16 +1,22 @@
 #include "Animal.h"
-
-Animal::Animal()
+#include <sstream>
+namespace objects
 {
-    age = "0";
-    species = "undefined";
-};
+    Animal::Animal()
+    {
+        age = "0";
+        species = "undefined";
+    };
 
-string Animal::toString(){
+    string Animal::toString()
+    {
+        stringstream ss;
+        ss << "I'm " << species << " of age " << age << "." << endl;
+        return ss.str();
+    };
 
-};
-
-void Animal::speak()
-{
-    cout << "I can't speek..." << endl;
-}
+    void Animal::speak()
+    {
+        cout << "I can't speek..." << endl;
+    }
+} // namespace objects

@@ -175,3 +175,9 @@ public:
   }
 };
 ```
+
+## Destructor vs delete
+
+> A destructor executes when an object is being destroyed. This can be when an automatic object (that is something allocated on the stack) is about to go out of scope, or when you explicitly delete an object allocated with new.
+
+if objects have dynamically allocated fields, then we need to free (delete) the memory manually inside the destuctor of the object.

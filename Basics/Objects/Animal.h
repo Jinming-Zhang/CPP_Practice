@@ -3,14 +3,19 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
-class Animal
+namespace objects
 {
-public:
-    Animal();
-    string species;
-    string age;
-    string toString();
-    void speak();
-};
+    class Animal
+    {
+    public:
+        Animal();
+        Animal(string age, string species) : age(age), species(species){};
+        ~Animal() { cout << "bye animal~" << endl; }
+        string species;
+        string age;
+        string toString();
+        void speak();
+    };
+} // namespace objects
 
 #endif

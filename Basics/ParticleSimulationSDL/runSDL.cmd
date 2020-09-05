@@ -1,1 +1,0 @@
-g++ -o Particles .\SDLPractice.cpp -I D:\UnityProjects\CPP_Practice\Basics\ParticleSimulationSDL\SDL2\ -L D:\UnityProjects\CPP_Practice\Basics\ParticleSimulationSDL\lib\ -l libSDL2
