@@ -1,5 +1,43 @@
 # CPP Basics
 
+## g++ compiler flags
+
+src: [caiorss.github.io](https://caiorss.github.io/C-Cpp-Notes/compiler-flags-options.html)
+
+src:[courses.cs.washington.edu](https://courses.cs.washington.edu/courses/cse373/99au/unix/g++.html)
+
+### Search Path and Libaray Linking
+
+-l [linalg]
+=> Links to shared library or shared object - Specifically, it links to linalg.dll on Windows, liblinalg.so (on Unix-like oses like Linux, BSD, AIX, …) or linalg.dylib on MacOSX.
+-L [/path/to/shared-libraries]
+=> Add search path to shared libraries, directory containing \*.so, \*.dll or \*.dlyb files such as libLinearAlgebra.so depending on the current operating system.
+-I [/path/to/header-files]
+Add search path to header files (.h) or (.hpp).
+-D[FLAG] or -D[FLAG]=VALUE
+Pass preprocessor flag #if FLAG …
+
+### compile option flags
+
+-Wall
+Turns on lots of compiler warning flags, specifically (-Waddress, -Wcomment, -Wformat, -Wbool-compare, -Wuninitialized, -Wunknown-pragmas, -Wunused-value, -Wunused-value …)
+
+Output file: -o \<outputfile\>
+g++ file.cpp -o file.bin
+
+### Common library flags
+
+-lm - Compiles against the shared library libm (basic math library, mostly C only)
+-lpthread - Compile against Posix threads shared library
+
+## Optmization
+
+-O0
+No optmization, faster compilation time, better for debugging builds.
+-O2
+-O3
+Higher level of optmization. Slower compile-time, better for production builds.
+
 ## Primitives
 
 src: [Geeksforgeeks](https://www.geeksforgeeks.org/c-data-types/)
