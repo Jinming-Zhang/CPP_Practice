@@ -1,0 +1,3 @@
+big wolf:100
+small wolf:150
+pup wolf:50

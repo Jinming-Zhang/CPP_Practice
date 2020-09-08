@@ -3,12 +3,149 @@
 #include <limits>
 #include <chrono>
 #include <thread>
+#include <cstdlib>
+#include <cmath>
+#include <vector>
 // #include "Wolf.h"
 #include "Wolf.cpp"
 using namespace std;
 
+inline void printVector(vector<int> arr)
+{
+    for (int x : arr)
+    {
+        cout << x << " " << flush;
+    }
+    cout << endl;
+}
+
+vector<int> MergeSort(vector<int> arr)
+{
+    if (arr.size() <= 1)
+    {
+        return arr;
+    }
+    else
+    {
+        vector<int> left;
+        for (unsigned int i = 0; i < arr.size() / 2; i++)
+        {
+            left.insert(left.begin() + i, arr[i]);
+        }
+        vector<int> right;
+        for (unsigned int i = arr.size() / 2; i < arr.size(); i++)
+        {
+            // cout << i << endl;
+            // cout << arr[i] << endl;
+            right.insert(right.begin() + i - (arr.size() / 2), arr[i]);
+        }
+        left = MergeSort(left);
+        right = MergeSort(right);
+
+        vector<int> result;
+        unsigned int leftIndex = 0;
+        unsigned int rightIndex = 0;
+        unsigned int resultIndex = 0;
+        while (leftIndex < left.size() || rightIndex < right.size())
+        {
+            // added all element from left array
+            if (leftIndex >= left.size())
+            {
+                for (; rightIndex < right.size(); rightIndex++)
+                {
+                    result.insert(result.begin() + resultIndex, right[rightIndex]);
+                    resultIndex++;
+                }
+                break;
+            }
+            else if (rightIndex >= right.size())
+            {
+                for (; leftIndex < left.size(); leftIndex++)
+                {
+                    result.insert(result.begin() + resultIndex, left[leftIndex]);
+                    resultIndex++;
+                }
+                break;
+            }
+
+            if (left[leftIndex] < right[rightIndex])
+            {
+                result.insert(result.begin() + resultIndex, left[leftIndex]);
+                leftIndex++;
+                resultIndex++;
+            }
+            else
+            {
+                result.insert(result.begin() + resultIndex, right[rightIndex]);
+                rightIndex++;
+                resultIndex++;
+            }
+        }
+        return result;
+    }
+}
+
+vector<int> MergeSortTwo(vector<int> arr, long& swapCount){
+    if(arr.size()<=1){
+        return arr;
+    }
+    // left
+    vector<int> left(arr.size()/2);
+    for(unsigned int i = 0; i < arr.size()/2; i++){
+        left.insert(left.begin()+i, arr[i]);
+    }
+    //right
+    int rightSize = arr.size()-arr.size()/2;
+    vector<int> right;
+   for (unsigned int i = arr.size() / 2; i < arr.size(); i++)
+        {
+            right.insert(right.begin() + i - (arr.size() / 2), arr[i]);
+        }
+
+    // sort left and right
+    left = MergeSortTwo(left, swapCount);
+    right = MergeSortTwo(right, swapCount);
+
+    // merge right and right
+    int leftIndex = 0;
+    int rightIndex = 0;
+    int resultIndex = 0;
+    vector<int> result(arr.size());
+    while(leftIndex<left.size() || rightIndex<right.size()){
+        if(leftIndex>= left.size()){
+            while(rightIndex<right.size()){
+                rightIndex++;
+                result.insert(result.begin()+resultIndex, right[rightIndex]);
+                resultIndex++;
+            }
+            break;
+        }
+        else if(rightIndex >= right.size()){
+            while(leftIndex< left.size()){
+                leftIndex++;
+                result.insert(result.begin()+resultIndex, left[leftIndex]);
+                resultIndex++;
+            }
+            break;
+        }
+        else if(right[rightIndex]<left[leftIndex]){
+            swapCount += left.size() - leftIndex;
+            rightIndex++;
+            result.insert(result.begin()+resultIndex, right[rightIndex]);
+            resultIndex++;
+        }
+        else{
+            leftIndex++;
+            result.insert(result.begin()+resultIndex, left[leftIndex]);
+            resultIndex++;
+        }
+    }
+    return result;
+}
+
 int main()
 {
+    srand(time(NULL));
     // flush the output to console with a newline char
     cout << "Flush something with new line..." << endl;
     // flush the output to the console without a newline char
@@ -50,6 +187,15 @@ int main()
     cout << &wolf1 << endl;
     cout << wolf1.toString() << endl;
 
+    vector<int> arr2;
+    int count = 0;
+    while (count < 300)
+    {
+        arr2.insert(arr2.begin() + count, (rand() % 300)-150);
+        count++;
+    }
+    vector<int> sorted = MergeSort(arr2);
+    printVector(sorted);
     cout << "quiting in 3 seconds" << endl;
     cout << 3 << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
@@ -60,5 +206,6 @@ int main()
     // string anything;
     // cout << "type enter to quit." << endl;
     // cin >> anything;
+
     return 0;
 }
